@@ -7,6 +7,7 @@ import Es6TypeScript from './views/Es6TypeScript';
 import JsxTsx from './views/JsxTsx';
 import { VIEW } from './enums';
 import Hook from './views/Hook';
+import Mui from './views/Mui';
 
 
 
@@ -28,13 +29,13 @@ export default function App() {
         {/*
               //^ <></> : 아무 의미 없는 빈 태그
             */}
-            {view}
+            {/* {view} */}
         { view === VIEW.NAVER ? (<NaverSignIn />) : 
           view === VIEW.KAKAO ? (<KakaoSignIn />) : 
           view === VIEW.TYPESCRIPT ? (<Es6TypeScript />) : 
           view === VIEW.JSXTSX ? (<JsxTsx />) : 
           view === VIEW.HOOK ? (<Hook />) : 
-          view === VIEW.MUI ? (<></>) : (<></>)}
+          view === VIEW.MUI ? (<Mui />) : (<></>)}
       </div>
     </div>
   );
