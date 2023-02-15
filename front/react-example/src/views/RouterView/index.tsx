@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Route, Routes, Link, useNavigate, useParams } from 'react-router-dom'
+import { Route, Routes, Link, useNavigate, useParams, useLocation } from 'react-router-dom'
 
 import { Button, TextField, Typography } from '@mui/material'
 
@@ -31,9 +31,17 @@ import { Button, TextField, Typography } from '@mui/material'
 
 //? const { pathVariable명 } = useParams();
 
+//^ useLocation Hook 함수
+//? 현재의 resource Path를 문자열로 반환해주는 훅 함수
+//? import { useLocation } from "react-router-dom"
+//? const 상수명 = useLocation();
+
 export default function RouterView() {
   const [path, setPath] = useState<string>("");
   const navigator = useNavigate();
+
+  const location = useLocation();
+
   const { pathValue } = useParams();
 
   const movePath = () => {

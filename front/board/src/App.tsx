@@ -1,9 +1,10 @@
-import "./App.css";
-import { Route, Routes } from 'react-router-dom'
-import LoginView from "./views/AuthenticationView";
-import NavigationBar from "./views/NavigationBar";
-import AuthenticationView from "./views/AuthenticationView";
+import './App.css';
 
+import { Routes, Route } from 'react-router-dom';
+
+import AuthenticationView from './views/AuthenticationView';
+import NavigationBar from './views/NavigationBar';
+import Main from './views/Main';
 
 //% Router 설계
 //? 1. "main" path 작성 - "/"
@@ -16,22 +17,20 @@ import AuthenticationView from "./views/AuthenticationView";
 
 function App() {
     return (
-        //# 최상위 태그는 하나만 올 수 있기 때문에 무의미한 빈 태그로 감싸준다.
-        <> 
-            <NavigationBar />
-            <Routes>
-                <Route path="/" element={<></>} />
-                <Route path="/auth" element={(<AuthenticationView />)} />
-                <Route path="/mypage" element={<></>} />
-                <Route path="/boaer"> //# /board(중복) router 아래의 router
-                    <Route path="/write" element={<></>} />
-                    <Route path="/search/:content" element={<></>} />
-                    <Route path="/detail/:boardNumber" element={<></>} />
-                    <Route path="/update/:boardNumber" element={<></>} />
-                </Route>
-            </Routes>
-            <LoginView />
-        </>
+        <>{/*//# 최상위 태그는 하나만 올 수 있기 때문에 무의미한 빈 태그로 감싸준다.*/}
+        <NavigationBar />
+        <Routes>
+          <Route path='/' element={(<Main />)} />
+          <Route path='/auth' element={(<AuthenticationView />)} />
+          <Route path='/myPage' element={(<></>)} />
+          <Route path='/board'> {/*//# /board(중복) router 아래의 router*/}
+            <Route path='write' element={(<></>)} />
+            <Route path='search/:content' element={(<></>)} />
+            <Route path='detail/:boardNumber' element={(<></>)} />
+            <Route path='update/:boardNumber' element={(<></>)} />
+          </Route>
+        </Routes>
+      </>
     );
 
 
