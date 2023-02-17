@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -6,34 +6,59 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import SearchIcon from '@mui/icons-material/Search';
-import { Button } from '@mui/material';
+import { Button, FormControl, InputAdornment, OutlinedInput } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+
 export default function NavigationBar() {
+
+  const [content, setContent] = useState<string>("");
 
   const navigator = useNavigate();
   const path = useLocation();
 
-  console.log(path.pathname);
+  const onSearchHandler = () =>{
+    if(!content.trim()) {
+      alert("검색어를 입력해 주세요.")
+      return; //# 함수 종료
+    }
+
+    navigator(`/board/search/${content}`)
+
+  }
+  
 
   return (
-    <Box sx={{ flexGrow: 1, pr: "120px", pl: "120px" }}>
-      <AppBar position="static">
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar variant='outlined' position="static" sx={{ p: "0 120px", backgroundColor: "#fff" }}>
         <Toolbar>
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block', color: "#000" } }}
             onClick={() => navigator('/')}
           >
             Hoons Board
           </Typography>
-          <Box>
-            <IconButton color={"default"}>
-              <SearchIcon />
-            </IconButton>
-            {path.pathname !== '/auth' && (<Button variant='contained' color='secondary' onClick={() => navigator('/auth')}>로그인</Button>)} {/*//# /auth가 아닐 때 로그인 버튼 생성*/}
+          <Box sx={{display:"flex", }}>
+            <FormControl variant='outlined' sx={{mr:"10px"}}>
+              <OutlinedInput
+                size='small'
+                placeholder='검색어를 입력해 주세요.'
+                type='text'
+                endAdornment={
+                  <InputAdornment position='end'>
+                    <IconButton edge="end" onClick={onSearchHandler}>
+                      <SearchIcon />
+                    </IconButton>
+                  </InputAdornment>
+                }
+        
+                onChange={(event)=> setContent(event.target.value)}
+              />
+            </FormControl>
+            {path.pathname !== '/auth' && (<Button variant='contained' sx={{ backgroundColor: "#000" }} onClick={() => navigator('/auth')}>로그인</Button>)} {/*//# /auth가 아닐 때 로그인 버튼 생성*/}
           </Box>
         </Toolbar>
       </AppBar>

@@ -43,6 +43,7 @@ export default function RouterView() {
   const location = useLocation();
 
   const { pathValue } = useParams();
+  
 
   const movePath = () => {
     console.log(path);
