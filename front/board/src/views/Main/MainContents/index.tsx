@@ -10,7 +10,11 @@ import { getPageCount } from 'src/utils'
 export default function MainContents() {
 
   //#import { usePagingHook } from 'src/hooks'에서 return 한 것 불러오기
-  const{viewList, pageNumber, boardList, COUNT, onPageHandler} = usePagingHook();
+  const{viewList, pageNumber, boardList, setBoardList, COUNT, onPageHandler} = usePagingHook();
+
+  useEffect(() => {
+    setBoardList(BOARD_LIST);
+  },[])
   
 
   return (

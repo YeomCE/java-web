@@ -13,3 +13,13 @@ export interface IPreviewItem {
 
     boardNumber : number;
 }
+
+export interface IUser{
+    email : string;
+    password : string;
+    nickName : string;
+    telNumber : string;
+    address : string;
+    addressDetail : string;
+    profile ?: string; //# ? => 사용해도 되도 안해도 된다.
+}

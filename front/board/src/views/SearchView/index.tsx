@@ -13,7 +13,7 @@ export default function SearchView() {
 
     const { content } = useParams();
     //#import { usePagingHook } from 'src/hooks'에서 return 한 것 불러오기
-    const { viewList, pageNumber, boardList, COUNT, onPageHandler } = usePagingHook(content as string);
+    const { viewList, pageNumber, boardList, COUNT, onPageHandler, setBoardList } = usePagingHook();
 
     // const COUNT = 5;
 
@@ -36,15 +36,15 @@ export default function SearchView() {
     //     setViewList(tmpList);
     // }
 
-    // useEffect(()=>{
-    //     //% array.filter(요소 => 조건)
-    //     //?  : 주어진 함수의 테스트를 통과하는 모든 요소를 모아 새로운 배열로 반환하는 메서드
+    useEffect(()=>{
+        //% array.filter(요소 => 조건)
+        //?  : 주어진 함수의 테스트를 통과하는 모든 요소를 모아 새로운 배열로 반환하는 메서드
 
-    //     //% string.inclues(검색할 문자열)
-    //     //?  : 해당 문자열에서 검색할 문자열이 존재한다면 true, 아니면 false를 반환하는 메서드
-    //     const tmp = BOARD_LIST.filter((board)=>board.boardTitle.includes(content as string))//# as 타입 : 해당 타입으로 변환  *//
-    //     setBoardList(tmp);
-    // },[])
+        //% string.inclues(검색할 문자열)
+        //?  : 해당 문자열에서 검색할 문자열이 존재한다면 true, 아니면 false를 반환하는 메서드
+        const tmp = BOARD_LIST.filter((board)=>board.boardTitle.includes(content as string))//# as 타입 : 해당 타입으로 변환  *//
+        setBoardList(tmp);
+    },[content])
 
     // useEffect(()=>{
     //     onPageHandler(pageNumber);
@@ -71,7 +71,7 @@ export default function SearchView() {
                 <Grid container spacing={3} >
                     <Grid item sm={12} md={8}>
                         <Stack spacing={2}>
-                            {viewList.map((boardItem) => (<BoardListItem item={boardItem} />))}
+                            {viewList. length ===0 ? (<Box sx={{height:"416px", display:"flex", justifyContent:"center", alignItems:"center"}}><Typography sx={{fontSize:"24px", fontWeight:500, color:"rgba(0,0,0,0.4)"}}>검색 결과가 없습니다.</Typography></Box>) : viewList.map((boardItem) => (<BoardListItem item={boardItem} />))}
                         </Stack>
 
                     </Grid>
