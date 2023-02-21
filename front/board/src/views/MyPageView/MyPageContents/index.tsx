@@ -17,11 +17,11 @@ export default function MyPageContents() {
 
     useEffect(()=>{
         //^ 로그인이 되어있지 않으면 로그인 페이지로 이동
-        if(!user) {
-            alert("로그인이 필요한 작업입니다.");
-            navigator("/auth");
-            return;
-        }
+        // if(!user) {
+        //     alert("로그인이 필요한 작업입니다.");
+        //     navigator("/auth");
+        //     return;
+        // }
 
         //? BOARD_LIST(전체 게시물 리스트)에서 작성자의 nickname이 로그인한 회원의 nickname과 일치하는 게시물만 필터링하여 새로운 기준이 되는 list 생성
         const tmp = BOARD_LIST.filter((board) => board.writerNickname === user?.nickName);
