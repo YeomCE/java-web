@@ -1,33 +1,49 @@
 import { useEffect } from 'react'
-import { Box, Card, CardActionArea, Grid, Typography, Pagination } from "@mui/material"
+import { Box, Card, CardActionArea, Grid, Typography, Pagination, Stack } from "@mui/material"
 import CreateIcon from '@mui/icons-material/Create';
 import { usePagingHook } from "src/hooks"
 import { BOARD_LIST } from 'src/mock';
 import { useUserStore } from 'src/stores';
+import BoardListItem from 'src/components/BoardListItem';
+import { getPageCount } from 'src/utils';
+import { useNavigate } from 'react-router-dom';
 
 export default function MyPageContents() {
 
     const { boardList, viewList, pageNumber, onPageHandler, COUNT, setBoardList } = usePagingHook();
+    //? 로그인 한 상태일 때 유저 정보를 가져올 수 있도록 스토어에서 user 상태를 가져온다.
     const { user } = useUserStore();
+    const navigator = useNavigate();
 
     useEffect(()=>{
+        //^ 로그인이 되어있지 않으면 로그인 페이지로 이동
+        if(!user) {
+            alert("로그인이 필요한 작업입니다.");
+            navigator("/auth");
+            return;
+        }
+
+        //? BOARD_LIST(전체 게시물 리스트)에서 작성자의 nickname이 로그인한 회원의 nickname과 일치하는 게시물만 필터링하여 새로운 기준이 되는 list 생성
         const tmp = BOARD_LIST.filter((board) => board.writerNickname === user?.nickName);
+        //? 기준이 되는 새로운 리스트를 boardList 상태에 저장
         setBoardList(tmp);
     },[])
 
     return (
         <Box sx={{ p: "40px 120px", backgroundColor: "rgba(0, 0, 0, 0.05)" }}>
             <Box>
-                <Typography sx={{fontSize:"24px", fontWeight:500}}>내 게시물 10</Typography>
+                <Typography sx={{fontSize:"24px", fontWeight:500}}>내 게시물 {boardList.length}</Typography>
             </Box>
             <Box sx={{mt:"20px", mb:"80px"}}>
                 <Grid container spacing={3}>
                     <Grid item sm={12} md={8}>
-
+                        <Stack spacing={2}>
+                            {viewList.map((boardItem)=>(<BoardListItem item = {boardItem} />))}
+                        </Stack>
                     </Grid>
                     <Grid item sm={12} md={4} >
                         <Card variant='outlined'>
-                            <CardActionArea sx={{ p: "25px 0px ", display: "flex", justifyContent: "center" }}>
+                            <CardActionArea sx={{ p: "25px 0px ", display: "flex", justifyContent: "center" }} onClick={()=>navigator("/board/write")}>
                                 <CreateIcon sx={{ mr: "6px" }} />
                                 <Typography sx={{ fontSize: "18px", fontWeight: 500 }}>글쓰기</Typography>
                             </CardActionArea>
@@ -36,7 +52,7 @@ export default function MyPageContents() {
                 </Grid>
             </Box>
             <Box sx={{display:"flex", justifyContent:"center"}}>
-                <Pagination />
+                <Pagination page={pageNumber} count={getPageCount(boardList, COUNT)} onChange={(event, value)=>onPageHandler(value)}/>
             </Box>
         </Box>
     )
