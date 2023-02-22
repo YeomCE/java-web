@@ -23,3 +23,8 @@ export interface IUser{
     addressDetail : string;
     profile ?: string; //# ? => 사용해도 되도 안해도 된다.
 }
+
+export interface ILikeUser{
+    likeUserProfile : string;
+    likeUserNickName : string;
+}
