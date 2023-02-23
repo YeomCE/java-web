@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import { IPreviewItem } from "src/interface";
+import { ICommentItem, IPreviewItem } from "src/interface";
 import { BOARD_LIST } from "src/mock";
 
 //? use로 시작해야 한다.
-const usePagingHook = () => {
-  const COUNT = 5;
+const usePagingHook = (COUNT:number) => {
 
-  const [boardList, setBoardList] = useState<IPreviewItem[]>([]); //# 전체 리스트
-  const [viewList, setViewList] = useState<IPreviewItem[]>([]); //# 5개씩 보여줄 리스트
+  const [boardList, setBoardList] = useState<(IPreviewItem | ICommentItem)[]>([]); //# 전체 리스트
+  const [viewList, setViewList] = useState<(IPreviewItem | ICommentItem)[]>([]); //# 5개씩 보여줄 리스트
   const [pageNumber, setPageNumber] = useState<number>(1);
 
   //? 한 페이지에 5개의 게시물을 보여주고자 할 때
@@ -16,7 +15,7 @@ const usePagingHook = () => {
 
   const onPageHandler = (page: number) => {
     setPageNumber(page);
-    const tmpList: IPreviewItem[] = [];
+    const tmpList: (IPreviewItem | ICommentItem)[] = [];
 
     const startIndex = COUNT * (page - 1);
     const endIndex = COUNT * page - 1;

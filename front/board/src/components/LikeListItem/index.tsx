@@ -9,9 +9,9 @@ interface Props {
 export default function LikeListItem({likeUser} : Props) {
   return (
 
-    <Box component="span" sx={{ display: "flex", alignItems: "center" }}>
+    <Box component="span" sx={{ display: "inline-flex", alignItems: "center" }}>
       <Avatar sx={{ width: "32px", height: "32px", mr: "8px" }} src={likeUser.likeUserProfile} />
-      <Typography component="span" sx={{ fontSize: "16px", fontWeight: 500 }}>{likeUser.likeUserNickName}</Typography>
+      <Typography component="span" sx={{ fontSize: "16px", mr: "8px", fontWeight: 500 }}>{likeUser.likeUserNickName}</Typography>
     </Box>
   )
 }

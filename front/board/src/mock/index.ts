@@ -1,4 +1,4 @@
-import { ILikeUser, IPreviewItem, IUser } from "src/interface";
+import { ICommentItem, ILikeUser, IPreviewItem, IUser } from "src/interface";
 
 export const TOP3: IPreviewItem[] = [
     {
@@ -577,4 +577,127 @@ export const LIKE_LIST: ILikeUser[] = [
         likeUserProfile: "https://th.bing.com/th/id/OIP.cZvmtZ7NX-08LK-NsVeJ1wHaE8?w=291&h=194&c=7&r=0&o=5&pid=1.7",
         likeUserNickName: "주코야키"
     },
+];
+
+export const COMMENT_LIST:ICommentItem[]=[
+    {
+        commentUserProfile : "",
+        commentUserNickname : "Hello!",
+        commentUserContent : "안녕하세요 반갑습니다!",
+        commentDatetime : "2023-02-23 14:49"
+    },
+    {
+        commentUserProfile : "",
+        commentUserNickname : "Hello!",
+        commentUserContent : "안녕하세요 반갑습니다!",
+        commentDatetime : "2023-02-23 14:49"
+    },
+    {
+        commentUserProfile : "",
+        commentUserNickname : "Hello!",
+        commentUserContent : "안녕하세요 반갑습니다!",
+        commentDatetime : "2023-02-23 14:49"
+    },
+    {
+        commentUserProfile : "",
+        commentUserNickname : "Hello!",
+        commentUserContent : "안녕하세요 반갑습니다!",
+        commentDatetime : "2023-02-23 14:49"
+    },
+    {
+        commentUserProfile : "",
+        commentUserNickname : "Hello!",
+        commentUserContent : "안녕하세요 반갑습니다!",
+        commentDatetime : "2023-02-23 14:49"
+    },
+    {
+        commentUserProfile : "",
+        commentUserNickname : "Hello!",
+        commentUserContent : "안녕하세요 반갑습니다!",
+        commentDatetime : "2023-02-23 14:49"
+    },
+    {
+        commentUserProfile : "",
+        commentUserNickname : "Hello!",
+        commentUserContent : "안녕하세요 반갑습니다!",
+        commentDatetime : "2023-02-23 14:49"
+    },
+    {
+        commentUserProfile : "",
+        commentUserNickname : "Hello!",
+        commentUserContent : "안녕하세요 반갑습니다!",
+        commentDatetime : "2023-02-23 14:49"
+    },
+    {
+        commentUserProfile : "",
+        commentUserNickname : "Hello!",
+        commentUserContent : "안녕하세요 반갑습니다!",
+        commentDatetime : "2023-02-23 14:49"
+    },
+    {
+        commentUserProfile : "",
+        commentUserNickname : "Hello!",
+        commentUserContent : "안녕하세요 반갑습니다!",
+        commentDatetime : "2023-02-23 14:49"
+    },
+    {
+        commentUserProfile : "",
+        commentUserNickname : "Hello!",
+        commentUserContent : "안녕하세요 반갑습니다!",
+        commentDatetime : "2023-02-23 14:49"
+    },
+    {
+        commentUserProfile : "",
+        commentUserNickname : "Hello!",
+        commentUserContent : "안녕하세요 반갑습니다!",
+        commentDatetime : "2023-02-23 14:49"
+    },
+    {
+        commentUserProfile : "",
+        commentUserNickname : "Hello!",
+        commentUserContent : "안녕하세요 반갑습니다!",
+        commentDatetime : "2023-02-23 14:49"
+    },
+    {
+        commentUserProfile : "",
+        commentUserNickname : "Hello!",
+        commentUserContent : "안녕하세요 반갑습니다!",
+        commentDatetime : "2023-02-23 14:49"
+    },
+    {
+        commentUserProfile : "",
+        commentUserNickname : "Hello!",
+        commentUserContent : "안녕하세요 반갑습니다!",
+        commentDatetime : "2023-02-23 14:49"
+    },
+    {
+        commentUserProfile : "",
+        commentUserNickname : "Hello!",
+        commentUserContent : "안녕하세요 반갑습니다!",
+        commentDatetime : "2023-02-23 14:49"
+    },
+    {
+        commentUserProfile : "",
+        commentUserNickname : "Hello!",
+        commentUserContent : "안녕하세요 반갑습니다!",
+        commentDatetime : "2023-02-23 14:49"
+    },
+    {
+        commentUserProfile : "",
+        commentUserNickname : "Hello!",
+        commentUserContent : "안녕하세요 반갑습니다!",
+        commentDatetime : "2023-02-23 14:49"
+    },
+    {
+        commentUserProfile : "",
+        commentUserNickname : "Hello!",
+        commentUserContent : "안녕하세요 반갑습니다!",
+        commentDatetime : "2023-02-23 14:49"
+    },
+    {
+        commentUserProfile : "",
+        commentUserNickname : "Hello!",
+        commentUserContent : "안녕하세요 반갑습니다!",
+        commentDatetime : "2023-02-23 14:49"
+    }
 ]

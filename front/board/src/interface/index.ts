@@ -28,3 +28,10 @@ export interface ILikeUser{
     likeUserProfile : string;
     likeUserNickName : string;
 }
+
+export interface ICommentItem{
+    commentUserProfile : string;
+    commentUserNickname : string;
+    commentUserContent : string;
+    commentDatetime : string;
+}

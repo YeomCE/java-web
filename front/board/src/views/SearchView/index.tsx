@@ -13,7 +13,7 @@ export default function SearchView() {
 
     const { content } = useParams();
     //#import { usePagingHook } from 'src/hooks'에서 return 한 것 불러오기
-    const { viewList, pageNumber, boardList, COUNT, onPageHandler, setBoardList } = usePagingHook();
+    const { viewList, pageNumber, boardList, COUNT, onPageHandler, setBoardList } = usePagingHook(5);
 
     // const COUNT = 5;
 
@@ -71,7 +71,7 @@ export default function SearchView() {
                 <Grid container spacing={3} >
                     <Grid item sm={12} md={8}>
                         <Stack spacing={2}>
-                            {viewList. length ===0 ? (<Box sx={{height:"416px", display:"flex", justifyContent:"center", alignItems:"center"}}><Typography sx={{fontSize:"24px", fontWeight:500, color:"rgba(0,0,0,0.4)"}}>검색 결과가 없습니다.</Typography></Box>) : viewList.map((boardItem) => (<BoardListItem item={boardItem} />))}
+                            {viewList. length ===0 ? (<Box sx={{height:"416px", display:"flex", justifyContent:"center", alignItems:"center"}}><Typography sx={{fontSize:"24px", fontWeight:500, color:"rgba(0,0,0,0.4)"}}>검색 결과가 없습니다.</Typography></Box>) : viewList.map((boardItem) => (<BoardListItem item={boardItem as IPreviewItem} />))}
                         </Stack>
 
                     </Grid>

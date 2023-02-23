@@ -5,15 +5,21 @@ import React from 'react'
 import { Avatar, Box, Typography, IconButton } from "@mui/material"
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { useUserStore } from 'src/stores';
+import { useNavigate } from 'react-router-dom';
 
 export default function MyPageHead() {
 
-    const { user } = useUserStore();
+    const { user, resetUser } = useUserStore();
+    const navigator = useNavigate();
+    const onLogoutHandler = () => {
+        resetUser();
+        navigator("/");
+    }
 
     return (
         <Box sx={{ p: "40px 20px", display: "flex" }}>
             <Box>
-                <IconButton>
+                <IconButton onClick={onLogoutHandler}>
                     <Avatar alt={user?.nickName} src={user?.profile} sx={{ width: "120px", height: "120px" }} />
                 </IconButton>
             </Box>

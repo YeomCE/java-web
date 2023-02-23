@@ -10,7 +10,7 @@ import { getPageCount } from 'src/utils'
 export default function MainContents() {
 
   //#import { usePagingHook } from 'src/hooks'에서 return 한 것 불러오기
-  const{viewList, pageNumber, boardList, setBoardList, COUNT, onPageHandler} = usePagingHook();
+  const{viewList, pageNumber, boardList, setBoardList, COUNT, onPageHandler} = usePagingHook(5);
 
   useEffect(() => {
     setBoardList(BOARD_LIST);
@@ -27,7 +27,7 @@ export default function MainContents() {
           <Grid container spacing={3}>
             <Grid item sm={12} md={8}>
               <Stack spacing={2}>
-              {viewList.map((boardItem) => (<BoardListItem item = {boardItem}/>))}
+              {viewList.map((boardItem) => (<BoardListItem item = {boardItem as IPreviewItem}/>))}
               </Stack>
             </Grid>
             <Grid item sm={12} md={4}>
