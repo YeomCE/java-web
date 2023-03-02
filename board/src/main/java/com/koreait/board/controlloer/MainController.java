@@ -1,5 +1,7 @@
 package com.koreait.board.controlloer;
 
+import org.jboss.jandex.Main;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,62 +14,83 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.koreait.board.dto.GetTestResponseDto;
 import com.koreait.board.dto.PostTestRequestDto;
+import com.koreait.board.service.MainService;
 
-// 해당 클래스를 REST API로 사용되는 Controller로 지정할 수 있다.
-// Controller : react의 route와 비슷하다.
+//? 해당 클래스를 REST API로 사용되는 Controller로 지정할 수 있다.
+//? Controller : react의 route와 비슷하다.
 @RestController
 
-// 해당 클래스를 특정 Request URL 패턴에서 사용하도록 지정
+//? 해당 클래스를 특정 Request URL 패턴에서 사용하도록 지정
 @RequestMapping("apis")
 public class MainController {
 
-	//HTTP 메서드 중 GET 방식의 요청에 대한 처리를 지정할 때 사용한다.
+	//?% #Autowired
+	//?? @Component 등록이 되어있는 클래스의 생성작업을 스프링이 자동으로 처리해준다.
+	@Autowired
+	private MainService mainService;
+
+	//?HTTP 메서드 중 GET 방식의 요청에 대한 처리를 지정할 때 사용한다.
 	@GetMapping("/")
 	public String retMath() {
+		String result = mainService.getMain();
 		return "Hello World";
 	}
 	
-	// Pathvariable(path) : GET / DELETE 방식에서 사용할 수 있다.
-	//						URL Path로 클라이언트로부터 데이터를 받아서 변수로 사용할 수 있다.
+	//? Pathvariable(path) : GET / DELETE 방식에서 사용할 수 있다.
+	//?						URL Path로 클라이언트로부터 데이터를 받아서 변수로 사용할 수 있다.
 	@GetMapping("/variable/{data}")
 	public String getVariable(@PathVariable("data") String data) {
-		return "You input data is '" + data + "'";
+		// return "You input data is '" + data + "'";
+		String result = mainService.getVariable(data);
+		return result;
 	}
 	
-	// HTTP 메서드 중 POST 방식의 요청에 대한 처리를 지정할 때 사용한다.
+	//? HTTP 메서드 중 POST 방식의 요청에 대한 처리를 지정할 때 사용한다.
 	@PostMapping("/")
 	public String postMain() {
-		return "POST main Response!";
+		// return "POST main Response!";
+		String result = mainService.postMain();
+		return result;
 	}
 	
-	// @RequestBody : POST / PATCH 방식에서 사용할 수 있다.
-	//			      클라이언트로부터 request body로 데이터를 받고자 할 때 사용
+	//? @RequestBody : POST / PATCH 방식에서 사용할 수 있다.
+	//?			      클라이언트로부터 request body로 데이터를 받고자 할 때 사용
 	@PostMapping("/requestBody")
 	public String postRequestBody(@RequestBody String data) {
-		return "Post body data is '" + data + "'";
+		// return "Post body data is '" + data + "'";
+		String result = mainService.postRequestBody(data);
+		return result;
 	}
 	
-	// HTTP 메서드 중 PATCH 방식의 요청에 대한 처리를 지정할 때 사용
+	//? HTTP 메서드 중 PATCH 방식의 요청에 대한 처리를 지정할 때 사용
 	@PatchMapping("/")
 	public String patchMain() {
-		return "Patch 메서드는 수정 작업을 지정한 메서드이다. 클라이언트로부터 데이터를 받을 때는 request body로 받는다.";
+		// return "Patch 메서드는 수정 작업을 지정한 메서드이다. 클라이언트로부터 데이터를 받을 때는 request body로 받는다.";
+		String result = mainService.patchMain();
+		return result;
 	}
 
-	// HTTP 메서드 중 DELETE 방식의 요청에 대한 처리를 지정할 때 사용
+	//? HTTP 메서드 중 DELETE 방식의 요청에 대한 처리를 지정할 때 사용
 	@DeleteMapping("/")
 	public String deleteMain() {
-		return "Delete 메서드는 삭제 작업을 지정한 메서드이다. 클라이언트로부터 데이터를 받을 때는 path variable로 받는다.";
+		// return "Delete 메서드는 삭제 작업을 지정한 메서드이다. 클라이언트로부터 데이터를 받을 때는 path variable로 받는다.";
+		String result = mainService.deleteMain();
+		return result;
 	}
 	
-	// request body 혹은 response body로 객체를 담을 때는 Dto 사용하여 전송 혹은 수신
+	//? request body 혹은 response body로 객체를 담을 때는 Dto 사용하여 전송 혹은 수신
 	@PostMapping("/test")
 	public String postTest(@RequestBody PostTestRequestDto requestBody) {
-		return requestBody.toString();
+		// return requestBody.toString();
+		String result = mainService.postTest(requestBody);
+		return result;
 	}
 	
 	@GetMapping("/test")
 	public GetTestResponseDto getTest(){
-		return new GetTestResponseDto(10, "Comment");
+		// return new GetTestResponseDto(10, "Comment");
+		GetTestResponseDto result = mainService.getTest();
+		return result;
 		
 	}
 }
