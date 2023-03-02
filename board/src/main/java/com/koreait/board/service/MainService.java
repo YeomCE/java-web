@@ -1,9 +1,15 @@
 package com.koreait.board.service;
 
+import javax.xml.crypto.Data;
+
 import org.springframework.stereotype.Service;
 
 import com.koreait.board.dto.GetTestResponseDto;
 import com.koreait.board.dto.PostTestRequestDto;
+import com.koreait.board.dto.ResponseDto;
+import com.mysql.cj.protocol.Message;
+
+import ch.qos.logback.core.status.Status;
 
 //% Service
 //? 실제 비즈니스 로직을 담당하는 레이어
@@ -13,8 +19,9 @@ import com.koreait.board.dto.PostTestRequestDto;
 @Service
 public class MainService {
 
-    public String getMain(){
-        return "Hello World";
+    public ResponseDto<String> getMain(){
+        ResponseDto<String> result = ResponseDto.setSuccess("success", "Hello World!");
+        return result;
     }
 
     public String getVariable(String data){
